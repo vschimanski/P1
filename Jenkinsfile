@@ -3,6 +3,7 @@ pipeline {
 
     environment {
         MVN_HOME = tool name: 'Maven3', type: 'hudson.tasks.Maven$MavenInstallation'
+        PROJECT_VERSION="null"
     }
 
    stages {
@@ -25,6 +26,24 @@ pipeline {
                         sh 'java -jar target/P*.jar'
                     }
            }
+
+            stage('Zip') {
+
+                               steps {
+
+                                   sh 'cat ${PROJECT_VERSION} target/classes/version.txt'
+                                   sh 'echo ${PROJECT_VERSION}'
+                               }
+                      }
+
+            stage('Upload') {
+
+               steps {
+
+
+                        sh 'echo ${PROJECT_VERSION}'
+                                                     }
+                                            }
 
     }
      post {
