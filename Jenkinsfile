@@ -32,7 +32,7 @@ pipeline {
                         steps {
                             script {
                                 //env.FILENAME = readFile 'target/classes/version.txt'
-                                 env.PROJECT_VERSION}=readFile 'target/classes/version.txt'
+                                 env.PROJECT_VERSION = readFile 'target/classes/version.txt'
                             }
 
                             echo "${PROJECT_VERSION}"
