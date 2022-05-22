@@ -33,6 +33,7 @@ pipeline {
 
                                    sh 'cat ${PROJECT_VERSION} target/classes/version.txt'
                                    sh 'echo ${PROJECT_VERSION}'
+                                   sh 'zip target/P1-${PROJECT_VERSION}.zip target/P1-${PROJECT_VERSION}.jar'
                                }
                       }
 
@@ -42,6 +43,7 @@ pipeline {
 
 
                         sh 'echo ${PROJECT_VERSION}'
+                        sh 'cp target/P1-${PROJECT_VERSION}.zip /tmp'
                                                      }
                                             }
 
