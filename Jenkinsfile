@@ -30,9 +30,8 @@ pipeline {
             stage('Zip') {
 
                                steps {
-                                   sh "value=cat target/classes/version.txt"
-                                   sh '${PROJECT_VERSION}=$value'
-                                   //sh 'cat ${PROJECT_VERSION} target/classes/version.txt'
+
+                                   sh 'cat ${PROJECT_VERSION} target/classes/version.txt'
                                    sh 'echo ${PROJECT_VERSION}'
                                }
                       }
