@@ -62,7 +62,7 @@ pipeline {
                steps {
 
                       echo "${PROJECT_VERSION}"
-                      sh 'cp target/P1-'$PROJECT_VERSION'.zip' /tmp'
+                      sh 'cp target/P1-'$PROJECT_VERSION'.zip /tmp'
                                                      }
                                             }
 
