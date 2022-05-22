@@ -27,7 +27,7 @@ pipeline {
                     }
            }
 
-           stage("foo") {
+           stage("readFile") {
                        steps {
                            script {
                                env.FILENAME = readFile 'target/classes/version.txt'
@@ -41,9 +41,7 @@ pipeline {
 
                                steps {
 
-                                   sh 'cat ${PROJECT_VERSION} target/classes/version.txt'
-                                   sh 'echo ${PROJECT_VERSION}'
-                                   sh 'zip target/P1-${PROJECT_VERSION}.zip target/P1-${PROJECT_VERSION}.jar'
+                                   sh 'zip target/P1-${env.FILENAME}.zip target/P1-${env.FILENAME}}.jar'
                                    ls 'target'
                                }
                       }
@@ -52,9 +50,7 @@ pipeline {
 
                steps {
 
-
-                        sh 'echo ${PROJECT_VERSION}'
-                        sh 'cp target/P1-${PROJECT_VERSION}.zip /tmp'
+                        sh 'cp target/P1-${env.FILENAME}.zip /tmp'
                                                      }
                                             }
 
