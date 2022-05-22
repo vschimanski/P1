@@ -32,9 +32,10 @@ pipeline {
                         steps {
                             script {
                                 env.FILENAME = readFile 'target/classes/version.txt'
+                                ${PROJECT_VERSION}=${env.FILENAME}
                             }
                             echo "${env.FILENAME}"
-                            ${PROJECT_VERSION}=${env.FILENAME}
+
                         }
                         }
 
@@ -44,7 +45,7 @@ pipeline {
 
                                 sh 'echo ${env.FILENAME}'
                                 sh 'echo ${PROJECT_VERSION}'
-                                   sh 'zip target/P1-${env.FILENAME}.zip target/P1-${env.FILENAME}}.jar'
+                                  // sh 'zip target/P1-${env.FILENAME}.zip target/P1-${env.FILENAME}}.jar'
 
                                }
                       }
@@ -56,7 +57,7 @@ pipeline {
                                    env.FILENAME = readFile 'target/classes/version.txt'
                                }
 
-                        sh 'cp target/P1-${env.FILENAME}.zip /tmp'
+                       // sh 'cp target/P1-${env.FILENAME}.zip /tmp'
                                                      }
                                             }
 
