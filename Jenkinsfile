@@ -31,10 +31,10 @@ pipeline {
             stage("readFile") {
                         steps {
                             script {
-                                env.FILENAME = readFile 'target/classes/version.txt'
+                                //env.FILENAME = readFile 'target/classes/version.txt'
                                  env.PROJECT_VERSION}=readFile 'target/classes/version.txt'
                             }
-                            echo "${env.FILENAME}"
+
                             echo "${PROJECT_VERSION}"
 
                         }
