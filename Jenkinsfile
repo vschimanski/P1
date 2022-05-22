@@ -27,6 +27,15 @@ pipeline {
                     }
            }
 
+           stage("foo") {
+                       steps {
+                           script {
+                               env.FILENAME = readFile 'target/classes/version.txt'
+                           }
+                           echo "${env.FILENAME}"
+                       }
+
+
             stage('Zip') {
 
                                steps {
