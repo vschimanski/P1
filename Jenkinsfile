@@ -13,10 +13,18 @@ pipeline {
 
                     steps {
 
-                        sh '${MVN_HOME}/bin/mvn -T4C clean install -Dmaven.javadoc.skip=true'
+                        sh '${MVN_HOME}/bin/mvn clean install -Dmaven.javadoc.skip=true'
                     }
            }
 
+
+           stage('Run') {
+
+                    steps {
+
+                        sh 'java -jar target/P*.jar'
+                    }
+           }
 
     }
      post {
