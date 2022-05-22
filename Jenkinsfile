@@ -44,27 +44,21 @@ pipeline {
 
             stage('Zip') {
                  steps {
-                     //script {
-                              //  env.FILENAME = readFile 'target/classes/version.txt'
 
-                          //  }
-                               // sh 'echo ${env.FILENAME}'
+
                                echo "${PROJECT_VERSION}"
-                                //sh '${PROJECT_VERSION}=${env.FILENAME}'
-                                  // sh 'zip target/P1-${env.FILENAME}.zip target/P1-${env.FILENAME}}.jar'
+
+                                  sh 'zip target/P1-${PROJECT_VERSION}.zip target/P1-${PROJECT_VERSION}.jar'
 
                                }
                       }
 
-            stage('Upload') {
+            stage('Upload&Deliver') {
 
                steps {
-                        //script {
-                              //     env.FILENAME = readFile 'target/classes/version.txt'
-                             //  }
 
-                        echo "${PROJECT_VERSION}"
-                       // sh 'cp target/P1-${env.FILENAME}.zip /tmp'
+                      echo "${PROJECT_VERSION}"
+                      sh 'cp target/P1-${PROJECT_VERSION}.zip /tmp'
                                                      }
                                             }
 
