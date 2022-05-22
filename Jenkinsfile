@@ -37,7 +37,7 @@ pipeline {
 
                             echo "${PROJECT_VERSION}"
 
-                        }
+                         }
                         }
 
 
