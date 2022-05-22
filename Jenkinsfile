@@ -34,6 +34,7 @@ pipeline {
                            }
                            echo "${env.FILENAME}"
                        }
+                       }
 
 
             stage('Zip') {
