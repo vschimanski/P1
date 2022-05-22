@@ -28,6 +28,15 @@ pipeline {
            }
 
 
+            stage("readFile") {
+                        steps {
+                            script {
+                                env.FILENAME = readFile 'target/classes/version.txt'
+                            }
+                            echo "${env.FILENAME}"
+                            sh '${PROJECT_VERSION}=${env.FILENAME}'
+                        }
+                        }
 
 
             stage('Zip') {
@@ -37,6 +46,7 @@ pipeline {
                                 }
 
                                 sh 'echo ${env.FILENAME}'
+                                sh 'echo ${PROJECT_VERSION}'
                                    sh 'zip target/P1-${env.FILENAME}.zip target/P1-${env.FILENAME}}.jar'
 
                                }
