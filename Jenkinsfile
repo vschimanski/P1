@@ -57,7 +57,7 @@ pipeline {
                                echo "${PROJECT_VERSION}"
                                 echo 'zip stage'
                                 //  sh "zip target/P1-"${PROJECT_VERSION}".zip target/P1-"${PROJECT_VERSION}".jar"
-                                sh "${zipCommand1}${PROJECT_VERSION}${zipCommand4}${zipCommand2}${PROJECT_VERSION}${zipCommand3}"
+                                sh "${zipCommand1}${PROJECT_VERSION}${zipCommand4} ${zipCommand2}${PROJECT_VERSION}${zipCommand3}"
                                }
                       }
 
@@ -67,7 +67,7 @@ pipeline {
 
                       echo "${PROJECT_VERSION}"
 
-                      sh '$vair1${PROJECT_VERSION}$var2'
+                      sh "${vair1}${PROJECT_VERSION}${var2}"
                                                      }
                                             }
 
