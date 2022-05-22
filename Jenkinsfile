@@ -27,29 +27,22 @@ pipeline {
                     }
            }
 
-           stage("readFile") {
-                       steps {
-                           script {
-                               env.FILENAME = readFile 'target/classes/version.txt'
-                           }
-                           echo "${env.FILENAME}"
-                       }
-                       }
+
 
 
             stage('Zip') {
 
                                steps {
-
+                                   env.FILENAME = readFile 'target/classes/version.txt'
                                    sh 'zip target/P1-${env.FILENAME}.zip target/P1-${env.FILENAME}}.jar'
-                                   ls 'target'
+
                                }
                       }
 
             stage('Upload') {
 
                steps {
-
+                        env.FILENAME = readFile 'target/classes/version.txt'
                         sh 'cp target/P1-${env.FILENAME}.zip /tmp'
                                                      }
                                             }
