@@ -31,11 +31,11 @@ pipeline {
             stage("readFile") {
                         steps {
                             script {
-                                //env.FILENAME = readFile 'target/classes/version.txt'
-                                 env.PROJECT_VERSION = readFile 'target/classes/version.txt'
+                                env.FILENAME = readFile 'target/classes/version.txt'
+
                             }
 
-                            echo "${PROJECT_VERSION}"
+                            echo "${env.FILENAME}"
 
                          }
                         }
@@ -58,6 +58,7 @@ pipeline {
                                    env.FILENAME = readFile 'target/classes/version.txt'
                                }
 
+                        echo "${env.FILENAME}"
                        // sh 'cp target/P1-${env.FILENAME}.zip /tmp'
                                                      }
                                             }
