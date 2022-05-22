@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         MVN_HOME = tool name: 'Maven3', type: 'hudson.tasks.Maven$MavenInstallation'
-        PROJECT_VERSION=""
+       def PROJECT_VERSION = 'UNKNOWN'
     }
 
    stages {
@@ -31,12 +31,13 @@ pipeline {
             stage("readFile") {
                         steps {
                             script {
-                                env.FILENAME = readFile 'target/classes/version.txt'
+
+                                 PROJECT_VERSION = sh(returnStdout: true, script: 'cat target/classes/version.txt').trim()
 
                             }
 
-                            echo "${env.FILENAME}"
-                            sh '${PROJECT_VERSION}=${env.FILENAME}'
+                            echo "${PROJECT_VERSION}"
+
                          }
                         }
 
