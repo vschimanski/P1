@@ -41,9 +41,6 @@ pipeline {
 
             stage('Zip') {
                  steps {
-                    script {
-                             env.FILENAME = readFile 'target/classes/version.txt'
-                                }
 
                                 sh 'echo ${env.FILENAME}'
                                 sh 'echo ${PROJECT_VERSION}'
