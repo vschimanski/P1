@@ -46,9 +46,9 @@ pipeline {
                  steps {
 
 
-                               echo "${PROJECT_VERSION}"
+                               echo "$PROJECT_VERSION"
 
-                                  sh 'zip target/P1-${PROJECT_VERSION}.zip target/P1-${PROJECT_VERSION}.jar'
+                                  sh 'zip target/P1-$PROJECT_VERSION.zip target/P1-$PROJECT_VERSION.jar'
 
                                }
                       }
@@ -58,7 +58,7 @@ pipeline {
                steps {
 
                       echo "${PROJECT_VERSION}"
-                      sh 'cp target/P1-${PROJECT_VERSION}.zip /tmp'
+                      sh 'cp target/P1-$PROJECT_VERSION.zip /tmp'
                                                      }
                                             }
 
