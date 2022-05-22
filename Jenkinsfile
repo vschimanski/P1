@@ -4,6 +4,10 @@ pipeline {
     environment {
         MVN_HOME = tool name: 'Maven3', type: 'hudson.tasks.Maven$MavenInstallation'
        def PROJECT_VERSION = 'UNKNOWN'
+        zipCommand1="zip target/P1-"
+        zipCommand2="target/P1-"
+        zipCommand3=".jar"
+        zipCommand4=".zip"
     }
 
    stages {
@@ -47,12 +51,9 @@ pipeline {
 
 
                                echo "$PROJECT_VERSION"
-                                def zipCommand1="zip target/P1-"
-                                def zipCommand2="target/P1-"
-                                def zipCommand3=".jar"
-                                def zipCommand4=".zip"
-                                  //sh "zip target/P1-'${PROJECT_VERSION}'.zip target/P1-'${PROJECT_VERSION}'.jar"
-                                sh ${zipCommand1}${PROJECT_VERSION}${zipCommand4}${zipCommand2}${PROJECT_VERSION}${zipCommand3}
+
+                                  sh 'zip target/P1-'${PROJECT_VERSION}'.zip target/P1-'${PROJECT_VERSION}'.jar'
+                                //sh ${zipCommand1}${PROJECT_VERSION}${zipCommand4}${zipCommand2}${PROJECT_VERSION}${zipCommand3}
                                }
                       }
 
@@ -61,7 +62,7 @@ pipeline {
                steps {
 
                       echo "${PROJECT_VERSION}"
-                      sh 'cp target/P1-$PROJECT_VERSION.zip /tmp'
+                      sh 'cp target/P1-'$PROJECT_VERSION'.zip' /tmp'
                                                      }
                                             }
 
