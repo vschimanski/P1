@@ -67,7 +67,7 @@ pipeline {
 
                       echo "${PROJECT_VERSION}"
 
-                      sh "${vair1}${PROJECT_VERSION}${var2}"
+                      sh "${var1}${PROJECT_VERSION}${var2}"
                                                      }
                                             }
 
