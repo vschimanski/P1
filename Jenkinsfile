@@ -34,7 +34,7 @@ pipeline {
                                 env.FILENAME = readFile 'target/classes/version.txt'
                             }
                             echo "${env.FILENAME}"
-                            sh '${PROJECT_VERSION}=${env.FILENAME}'
+                            ${PROJECT_VERSION}=${env.FILENAME}
                         }
                         }
 
