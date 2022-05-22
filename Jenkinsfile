@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         MVN_HOME = tool name: 'Maven3', type: 'hudson.tasks.Maven$MavenInstallation'
-        PROJECT_VERSION="null"
+        PROJECT_VERSION
     }
 
    stages {
@@ -30,8 +30,9 @@ pipeline {
             stage('Zip') {
 
                                steps {
-
-                                   sh 'cat ${PROJECT_VERSION} target/classes/version.txt'
+                                   sh "value=cat target/classes/version.txt"
+                                   sh '${PROJECT_VERSION}=$value'
+                                   //sh 'cat ${PROJECT_VERSION} target/classes/version.txt'
                                    sh 'echo ${PROJECT_VERSION}'
                                }
                       }
