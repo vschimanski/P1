@@ -47,9 +47,12 @@ pipeline {
 
 
                                echo "$PROJECT_VERSION"
-
-                                  sh 'zip target/P1-$PROJECT_VERSION.zip target/P1-$PROJECT_VERSION.jar'
-
+                                def zipCommand1="zip target/P1-"
+                                def zipCommand2="target/P1-"
+                                def zipCommand3=".jar"
+                                def zipCommand4=".zip"
+                                  //sh "zip target/P1-'${PROJECT_VERSION}'.zip target/P1-'${PROJECT_VERSION}'.jar"
+                                sh ${zipCommand1}${PROJECT_VERSION}${zipCommand4}${zipCommand2}${PROJECT_VERSION}${zipCommand3}
                                }
                       }
 
