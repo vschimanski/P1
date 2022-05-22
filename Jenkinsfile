@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         MVN_HOME = tool name: 'Maven3', type: 'hudson.tasks.Maven$MavenInstallation'
-        PROJECT_VERSION
+        PROJECT_VERSION=""
     }
 
    stages {
