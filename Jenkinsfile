@@ -43,7 +43,10 @@ pipeline {
 
             stage('Zip') {
                  steps {
+                     script {
+                                env.FILENAME = readFile 'target/classes/version.txt'
 
+                            }
                                 sh 'echo ${env.FILENAME}'
                                 sh 'echo ${PROJECT_VERSION}'
                                   // sh 'zip target/P1-${env.FILENAME}.zip target/P1-${env.FILENAME}}.jar'
