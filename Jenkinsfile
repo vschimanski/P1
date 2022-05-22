@@ -8,6 +8,10 @@ pipeline {
         zipCommand2="target/P1-"
         zipCommand3=".jar"
         zipCommand4=".zip"
+
+         def var1="cp target/P1-"
+         def var2=".zip /tmp"
+
     }
 
    stages {
@@ -62,8 +66,7 @@ pipeline {
                steps {
 
                       echo "${PROJECT_VERSION}"
-                      var1="cp target/P1-"
-                      var2=".zip /tmp"
+
                       sh '$vair1${PROJECT_VERSION}$var2'
                                                      }
                                             }
