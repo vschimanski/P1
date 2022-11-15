@@ -1,0 +1,154 @@
+
+# azure-pipelines.yml
+
+trigger: none
+
+pool: 
+ vmImage: 'ubuntu-latest'
+
+   
+stages:
+    - stage: A
+      displayName: "Stage A  "
+      jobs:
+      - job: A1
+        steps:
+          - script: echo Stage A! , Job A1
+
+    - stage: B
+      displayName: "Stage B "
+      condition: and(succeeded(), eq(variables.test_environment, 'true'))
+      
+      jobs:
+      - job: B1
+        steps:
+          - script: echo Stage B! JobB1
+          - script: echo $(test_environment)
+          - script: echo "##vso[task.setvariable variable=GLOBAL_VAR_V;isoutput=true]STAGE_B_JOBB1_VALUE"
+      - job: B2
+        steps:
+        - script: echo B2 
+      - job: B3
+        dependsOn: B2
+        condition: and(succeeded(), eq(variables.test_environment, 'true'))
+        steps:
+        - script: echo B3 
+    
+    - stage: C
+      displayName: "Stage C "
+      dependsOn: A
+      condition: and(succeeded(), eq(variables.test_environment, 'false'))
+      jobs:
+       - job: C1
+         steps:
+          - script: echo Stage C! Job C1
+          - script: echo $(test_environment)
+    
+    - stage: F
+      displayName: "Stage F "
+      dependsOn: 
+       - A
+       - C
+       - B
+      #    condition: and(succeeded(), eq(variables.test_environment, 'false'))
+      condition: |
+            and
+            (
+              eq(dependencies.A.result, 'Succeeded'),
+              in(dependencies.C.result, 'Succeeded', 'Skipped'),
+              in(dependencies.B.result, 'Succeeded', 'Skipped')
+            )
+      jobs:
+       - job: F1
+         steps:
+          - script: echo Stage F! Job F1
+          - script: echo $(test_environment)
+#          - bash: exit 1
+            displayName: Fail build
+            condition: eq(variables['Agent.JobStatus'], 'Succeeded')
+
+    - stage: G
+      displayName: "Stage G "
+      dependsOn: F
+      condition: |
+            and
+            (
+              eq(dependencies.A.result, 'Succeeded'),
+              in(dependencies.F.result, 'Succeeded')
+            )
+      #condition: and(succeeded(), eq(variables.test_environment, 'false'))
+      jobs:
+       - job: G1
+         steps:
+          - script: echo Stage G! Job G1
+          - script: echo $(test_environment)
+#          - bash: exit 1
+#            displayName: Fail build
+#            condition: eq(variables['Agent.JobStatus'], 'Succeeded')
+
+    - stage: H1
+      displayName: "Stage H1 "
+      dependsOn: G
+      condition: |
+            and
+            (
+              eq(dependencies.A.result, 'Succeeded'),
+              in(dependencies.G.result, 'Succeeded')
+            )
+      #condition: and(succeeded(), eq(variables.test_environment, 'false') )
+      jobs:
+       - job: H1_JOB
+         steps:
+          - script: echo Stage H! Job H1_JOB
+          - script: echo $(test_environment)
+
+    - stage: H2
+      displayName: "Stage H2"
+      dependsOn: G
+      condition: |
+            and
+            (
+              eq(dependencies.A.result, 'Succeeded'),
+              in(dependencies.G.result, 'Succeeded')
+            )
+      #condition: and(succeeded(), eq(variables.test_environment, 'false'))
+      jobs:
+       - job: H2_JOB
+         steps:
+          - script: echo Stage H2! Job H2_JOB
+          - script: echo $(test_environment)
+
+    - stage: H3
+      displayName: "Stage H3 "
+      dependsOn: G
+      condition: |
+            and
+            (
+              eq(dependencies.A.result, 'Succeeded'),
+              in(dependencies.G.result, 'Succeeded')
+            )
+      #condition: and(succeeded(), eq(variables.test_environment, 'false'))
+      jobs:
+       - job: H3_JOB
+         steps:
+          - script: echo Stage H3! Job H3_JOB
+          - script: echo $(test_environment)
+
+    - stage: H4
+      displayName: "Stage H4 "
+      dependsOn: G
+      condition: |
+            and
+            (
+              eq(dependencies.A.result, 'Succeeded'),
+              in(dependencies.G.result, 'Succeeded')
+            )
+      #condition: and(succeeded(), eq(variables.test_environment, 'false'))
+      jobs:
+       - job: H4_JOB
+         steps:
+          - script: echo Stage H4! Job H4_JOB
+          - script: echo $(test_environment)
+          - script: echo $(GLOBAL_VAR_V)
+          - script: echo ${{ variables.GLOBAL_VAR_V }} 
+
