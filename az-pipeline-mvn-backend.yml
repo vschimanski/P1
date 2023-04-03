@@ -111,7 +111,7 @@ stages:
               eq(dependencies.A.result, 'Succeeded'),
               in(dependencies.G.result, 'Succeeded')
             )
-      #condition: and(succeeded(), eq(variables.test_environment, 'false'))
+      #condition: and(succeeded(), eq(variables.test_environment, 'false')) 
       jobs:
        - job: H2_JOB
          steps:
